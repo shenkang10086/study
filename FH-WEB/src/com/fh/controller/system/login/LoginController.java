@@ -82,7 +82,6 @@ public class LoginController extends BaseController {
 		mv.addObject("pd",pd);
 		return mv;
 	}
-	
 	/**请求登录，验证用户
 	 * @return
 	 * @throws Exception

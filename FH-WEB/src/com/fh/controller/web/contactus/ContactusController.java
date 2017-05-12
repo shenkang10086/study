@@ -27,7 +27,6 @@ import com.fh.service.web.contactus.ContactusManager;
 
 /** 
  * 说明：联系我们
- * 创建人：FH Q313596790
  * 创建时间：2017-01-04
  */
 @Controller

@@ -27,7 +27,6 @@ import com.fh.service.web.aboutus.AboutusManager;
 
 /** 
  * 说明：关于我们
- * 创建人：FH Q313596790
  * 创建时间：2017-01-07
  */
 @Controller

@@ -39,6 +39,7 @@
 				/static/js/** 				= anon
 				/uploadFiles/uploadImgs/** 	= anon
 	           	/code.do 					= anon
+	           	/product/**					= anon
 	           	/login_login	 			= anon
 	           	/app**/** 					= anon
 	           	/web**/**					= anon

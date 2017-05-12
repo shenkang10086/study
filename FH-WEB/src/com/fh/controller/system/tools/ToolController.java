@@ -15,7 +15,6 @@ import com.fh.util.PathUtil;
 
 /** 
  * 类名称：ToolController 系统工具
- * 创建人：FH Q313596790
  * 修改时间：2015年11月23日
  * @version
  */
@@ -56,4 +55,3 @@ public class ToolController extends BaseController {
 	}
 	
 }
-// 创建人：FH Q313596790

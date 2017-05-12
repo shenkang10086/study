@@ -24,9 +24,16 @@
 						</li>
 
 						<li id="Product">
-							<a href="webproduct.html"> 产品展示
+							<a href="product"> 产品展示
 								<div class="sub">Product case</div>
 							</a>
+							<#-- 
+							<ul>
+								<li><a href="product?PROTYPE=1">OLED</a></li>
+								<li><a href="product?PROTYPE=3">中间体</a></li>
+								<li><a href="product?PROTYPE=2">有机锂电子材料</a></li>
+							</ul>
+							-->
 						</li>
 
 						<li id="cooperation">

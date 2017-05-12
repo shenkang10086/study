@@ -59,6 +59,8 @@
 									<th class="center">标题</th>
 									<th class="center">发表时间</th>
 									<th class="center">来源</th>
+									<th class="center">类别</th>
+									<th class="center">产品类别</th>
 									<th class="center">操作</th>
 								</tr>
 							</thead>
@@ -77,6 +79,8 @@
 											<td class='center'>${var.TITLE}</td>
 											<td class='center'>${var.CTIME}</td>
 											<td class='center'>${var.STEMFROM}</td>
+											<td class='center'><c:if test="${var.TYPE=='1'}">新闻动态</c:if><c:if test="${var.TYPE=='2'}">产品详情</c:if></td>
+											<td class='center'><c:if test="${var.PROTYPE=='1'}">OLED</c:if><c:if test="${var.PROTYPE=='2'}">有机锂电子材料</c:if><c:if test="${var.PROTYPE=='3'}">中间体</c:if></td>
 											<td class="center">
 												<c:if test="${QX.edit != 1 && QX.del != 1 }">
 												<span class="label label-large label-grey arrowed-in-right arrowed-in"><i class="ace-icon fa fa-lock" title="无权限"></i></span>

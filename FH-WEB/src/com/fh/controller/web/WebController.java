@@ -21,7 +21,6 @@ import com.fh.util.Tools;
 
 /** 
  * 说明：访问首页)
- * 创建人：FH Q313596790
  * 创建时间：2016-03-30
  */
 @Controller

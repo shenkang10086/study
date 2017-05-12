@@ -3,7 +3,6 @@ package com.fh.util;
 import org.springframework.context.ApplicationContext;
 /**
  * 项目名称：
- * @author:fh qq313596790[青苔]
  * 修改日期：2015/11/2
 */
 public class Const {
@@ -22,7 +21,8 @@ public class Const {
 	public static final String LOGIN = "/fhadmin/login.do";					//登录地址
 	public static final String SYSNAME = "admin/config/SYSNAME.txt";		//系统名称路径
 	public static final String PAGE	= "admin/config/PAGE.txt";				//分页条数配置路径
-	public static final String EMAIL = "admin/config/EMAIL.txt";			//邮箱服务器配置路径
+	public static final String EMAIL = "admin/config/EMAIL.txt";
+	public static final String WEIXIN = "admin/config/WEIXIN.txt"; // 微信配置路径//邮箱服务器配置路径
 	public static final String SMS1 = "admin/config/SMS1.txt";				//短信账户配置路径1
 	public static final String SMS2 = "admin/config/SMS2.txt";				//短信账户配置路径2
 	public static final String FWATERM = "admin/config/FWATERM.txt";		//文字水印配置路径
@@ -32,7 +32,7 @@ public class Const {
 	public static final String FILEPATHFILE = "uploadFiles/file/";			//文件上传路径
 	public static final String FILEPATHFILEOA = "uploadFiles/uploadFile/";	//文件上传路径(oa管理)
 	public static final String FILEPATHTWODIMENSIONCODE = "uploadFiles/twoDimensionCode/"; //二维码存放路径
-	public static final String NO_INTERCEPTOR_PATH = ".*/((login)|(logout)|(code)|(app)|(static)|(main)|(websocket)|(fhadmin)|(web)|(fh_html_1)|(fh_static_1)|(index)|(uploadImgs)).*";	//不对匹配该值的访问路径拦截（正则）
+	public static final String NO_INTERCEPTOR_PATH = ".*/((login)|(weixin)|(logout)|(code)|(app)|(product)|(static)|(main)|(websocket)|(fhadmin)|(web)|(fh_html_1)|(fh_static_1)|(index)|(uploadImgs)).*";	//不对匹配该值的访问路径拦截（正则）
 	public static ApplicationContext WEB_APP_CONTEXT = null; //该值会在web容器启动时由WebAppContextListener初始化
 	
 	/**

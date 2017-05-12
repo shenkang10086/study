@@ -27,7 +27,6 @@ import com.fh.service.web.ourbusiness.OurBusinessManager;
 
 /** 
  * 说明：网站信息
- * 创建人：FH Q313596790
  * 创建时间：2017-01-03
  */
 @Controller

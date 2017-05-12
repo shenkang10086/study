@@ -45,6 +45,27 @@
 								<td><input type="text" name="STEMFROM" id="STEMFROM" value="${pd.STEMFROM}" maxlength="100" placeholder="这里输入来源" title="来源" style="width:98%;"/></td>
 							</tr>
 							<tr>
+								<td style="width:75px;text-align: right;padding-top: 13px;">类别:</td>
+								<td>
+								<select name="TYPE" id="TYPE" class="input" style="width:182px" onchange="changeType()">
+									<option value="">-请选择-</option>
+									<option <c:if test="${pd.TYPE=='1'}"> selected="selected"</c:if> value="1">新闻动态</option>
+									<option <c:if test="${pd.TYPE=='2'}"> selected="selected"</c:if> value="2">产品详情</option>
+								</select>
+							</td>
+							</tr>
+							<tr id="PROTYPETR" style="display: none">
+								<td style="width:75px;text-align: right;padding-top: 13px;">产品类别:</td>
+								<td>
+								<select name="PROTYPE" id="PROTYPE" class="input" style="width:182px">
+									<option value="">-请选择-</option>
+									<option <c:if test="${pd.PROTYPE=='1'}"> selected="selected"</c:if> value="1">OLED</option>
+									<option <c:if test="${pd.PROTYPE=='2'}"> selected="selected"</c:if> value="2">有机锂电子材料</option>
+									<option <c:if test="${pd.PROTYPE=='3'}"> selected="selected"</c:if> value="3">中间体</option>
+								</select>
+							</td>
+							</tr>
+							<tr>
 								<td style="width:75px;text-align: right;padding-top: 13px;">图片:</td>
 								<td><input onmouseover="showTU('IMAGE','yulantu1');" onmouseout="hideTU('yulantu1');" type="text" name="IMAGE" id="IMAGE" value="${pd.IMAGE}" maxlength="100" placeholder="这里输入图片" title="图片" style="width:88%;"/>
 									<div class="yulantu" id="yulantu1"></div>
@@ -150,6 +171,26 @@
 				$("#CONTENT").focus();
 			return false;
 			}
+			if($("#TYPE").val()==""){
+				$("#TYPE").tips({
+					side:3,
+		            msg:'请选择类别',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#TYPE").focus();
+			return false;
+			}
+			if($("#TYPE").val()==2 && $("#PROTYPE").val()==""){
+				$("#PROTYPE").tips({
+					side:3,
+		            msg:'请选择产品类别',
+		            bg:'#AE81FF',
+		            time:2
+		        });
+				$("#PROTYPE").focus();
+			return false;
+			}
 			$("#Form").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();
@@ -193,6 +234,18 @@
 		function hideTU(TPID){
 			 $("#"+TPID).hide();
 		}
+		//产品类别隐藏与展示
+		function changeType(){
+			if($('#TYPE option:selected').val()==2){
+				$("#PROTYPETR").css('display' ,''); 
+			}else{
+				$("#PROTYPETR").css('display' ,'none'); 
+			}
+		}
+		//页面载入时执行
+		$(function(){ 
+			changeType();
+			}); 
 		</script>
 </body>
 </html>

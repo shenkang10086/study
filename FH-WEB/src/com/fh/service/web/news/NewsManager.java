@@ -6,7 +6,6 @@ import com.fh.util.PageData;
 
 /** 
  * 说明： 新闻动态接口
- * 创建人：FH Q313596790
  * 创建时间：2017-01-08
  * @version
  */

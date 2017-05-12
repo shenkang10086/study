@@ -15,7 +15,9 @@
 		IMAGE,	
 		SHORTCONTENT,	
 		CONTENT,	
-		NEWS_ID
+		NEWS_ID,
+		TYPE,
+		PROTYPE
 	</sql>
 	
 	<!-- 字段值 -->
@@ -26,7 +28,9 @@
 		#{IMAGE},	
 		#{SHORTCONTENT},	
 		#{CONTENT},	
-		#{NEWS_ID}
+		#{NEWS_ID},
+		#{TYPE},
+		#{PROTYPE}
 	</sql>
 	
 	<!-- 新增-->
@@ -58,7 +62,8 @@
 			IMAGE = #{IMAGE},
 			SHORTCONTENT = #{SHORTCONTENT},
 			CONTENT = #{CONTENT},
-		NEWS_ID = NEWS_ID
+			TYPE=#{TYPE},
+			PROTYPE=#{PROTYPE}
 		where 
 		NEWS_ID = #{NEWS_ID}
 	</update>
@@ -87,6 +92,12 @@
 					 or 
 					SHORTCONTENT LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
 				)
+		</if>
+		<if test="pd.TYPE!= null and pd.TYPE != ''">
+			and TYPE = #{pd.TYPE}
+		</if>
+		<if test="pd.PROTYPE!= null and pd.PROTYPE != ''">
+			and PROTYPE = #{pd.PROTYPE}
 		</if>
 		order by CTIME desc
 	</select>

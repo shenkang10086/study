@@ -30,7 +30,6 @@ import com.fh.util.PathUtil;
 
 /** 
  * 类名称： 页面静态化
- * 创建人：FH Q313596790
  * 修改时间：2016年12月27日
  * @version
  */
@@ -75,6 +74,14 @@ public class CreateHtmlController extends BaseController {
 		this.getImg(root,"4");			//技术团队
 		DelAllFile.delFolder(PathUtil.getClasspath()+"index.html"); //生成代码前,先清空之前生成的文件
 		Freemarker.printFile("indexTemplate.ftl", root, "index.html", "", ftlPath);
+		
+		//index_top
+		DelAllFile.delFolder(PathUtil.getClasspath()+"index_top.html"); //生成代码前,先清空之前生成的文件
+		Freemarker.printFile("headerTemplate.ftl", root, "index_top.html", "", ftlPath);
+		//index_bottom
+		DelAllFile.delFolder(PathUtil.getClasspath()+"index_bottom.html"); //生成代码前,先清空之前生成的文件
+		Freemarker.printFile("footerTemplate.ftl", root, "index_bottom.html", "", ftlPath);
+		
 		map.put("result", "success");
 		return AppUtil.returnObject(new PageData(), map);
 	}
@@ -118,10 +125,23 @@ public class CreateHtmlController extends BaseController {
 		this.getImg(root,"5");			//产品案例
 		DelAllFile.delFolder(PathUtil.getClasspath()+"webproduct.html"); //生成代码前,先清空之前生成的文件
 		Freemarker.printFile("productTemplate.ftl", root, "webproduct.html", "", ftlPath);
+		this.proProductDetail();
 		map.put("result", "success");
 		return AppUtil.returnObject(new PageData(), map);
 	}
-	
+	/**
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public void proProductDetail() throws Exception{
+		Map<String,Object> root = new HashMap<String,Object>();		//创建数据模型
+		String ftlPath = "createHtml";								//ftl路径
+		this.getInfo(root);				//网站基本信息
+		this.getImg(root,"4");			//技术团队
+		DelAllFile.delFolder(PathUtil.getClasspath()+"webproductdetail.html"); //生成代码前,先清空之前生成的文件
+		Freemarker.printFile("productdetailTemplate.ftl", root, "webproductdetail.html", "", ftlPath);
+	}
 	/**生成合作共赢页面
 	 * @param response
 	 * @throws Exception
@@ -211,6 +231,11 @@ public class CreateHtmlController extends BaseController {
 		List<PageData> listNews = newsService.listAll(pdNews);
 		List<String[]> fieldList = new ArrayList<String[]>(); 
 		for(int i=0;i<listNews.size();i++){
+			String type =listNews.get(i).getString("TYPE");
+			//类别2为产品详情
+			if("2".equals(type)){
+				continue;
+			}
 			String[] array = new String[6]; 
 			array[0] = listNews.get(i).getString("NEWS_ID");		//ID
 			array[1] = listNews.get(i).getString("TITLE");			//标题
@@ -302,4 +327,3 @@ public class CreateHtmlController extends BaseController {
 	}
 	
 }
-//FHQ 3 1 3 5 9 6 7 9 0

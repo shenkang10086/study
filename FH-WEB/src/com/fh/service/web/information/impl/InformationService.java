@@ -10,7 +10,6 @@ import com.fh.service.web.information.InformationManager;
 
 /** 
  * 说明： 网站信息
- * 创建人：FH Q313596790
  * 创建时间：2016-12-27
  * @version
  */

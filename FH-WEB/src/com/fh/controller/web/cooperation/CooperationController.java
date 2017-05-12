@@ -27,7 +27,6 @@ import com.fh.service.web.cooperation.CooperationManager;
 
 /** 
  * 说明：合作共赢
- * 创建人：FH Q313596790
  * 创建时间：2017-01-07
  */
 @Controller

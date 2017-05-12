@@ -10,7 +10,6 @@ import com.fh.service.web.leavemsg.LeavemsgManager;
 
 /** 
  * 说明： 访客留言
- * 创建人：FH Q313596790
  * 创建时间：2017-01-04
  * @version
  */

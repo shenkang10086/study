@@ -10,7 +10,6 @@ import com.fh.util.Jurisdiction;
  * 
 * 类名称：登录过滤，权限验证
 * 类描述： 
-* @author FH qq313596790[青苔]
 * 作者单位： 
 * 联系方式：
 * 创建时间：2015年11月2日
@@ -22,6 +21,7 @@ public class LoginHandlerInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub
 		String path = request.getServletPath();
+//		System.out.println("path is :"+path+" isTrue:"+path.matches(Const.NO_INTERCEPTOR_PATH));
 		if(path.matches(Const.NO_INTERCEPTOR_PATH)){
 			return true;
 		}else{
