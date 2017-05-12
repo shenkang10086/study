@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx.xsd
+						http://www.springframework.org/schema/util
+						http://www.springframework.org/schema/util/spring-util.xsd
+	">
+	<!--抽象Bean不能被實例化，可用作模板 
+	若一個bean的class屬性沒有指定，則該bean必須是一個抽象bean -->
+	<bean id="address"  p:city="BeiJing" p:street="HuiLong" abstract="true"></bean>
+	<!-- 配置繼承，子Bean可覆蓋父bean的屬性值 -->
+	<bean id="address2" class="com.sk.spring.autowire.Address" p:city="ShangHai" parent="address"></bean>
+	<!-- depends-on用于前置依赖 ，在该bean创建前初始化依赖bean，多个用逗号或空格分隔-->
+	<bean id="person" class="com.sk.spring.autowire.Person" p:name="Jack"
+		p:address-ref="address2" depends-on="car"></bean>
+	<context:property-placeholder location="classpath:db.properties"/>
+</beans>

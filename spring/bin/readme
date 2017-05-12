@@ -1,0 +1,156 @@
+http://dist.springsource.com/release/TOOLS/update/e4.5/
+
+1、spring主要注入方式为set或者构造器注入
+2、set方式配置xml、bean类中存在set方法、spring初始化对象时先调用无参构造器
+<bean id="hello" class="com.sk.spring.HelloWorld">
+		<property name="name2" value="spring"></property>
+</bean>
+public class HelloWorld {
+	String name2;
+	public void setName2(String name) {
+		this.name2 = name;
+	}
+}
+3、构造器配置初始化时，实体类存在相应的带参构造器，可以根据类型匹配、特殊字符用<![CDATA[]]>包裹起来 
+<bean id="car2" class="com.sk.spring.Car">
+	<constructor-arg value="Baoma" type="java.lang.String"></constructor-arg>
+	<constructor-arg type="java.lang.String">
+		<value><![CDATA[<Hangzhou>]]></value>
+	</constructor-arg>
+	<constructor-arg type="int">
+		<value>250</value>
+	</constructor-arg>
+</bean>
+public class Car {
+	private String brand;
+	private String corp;
+	private double price;
+	private int maxSpeed;
+	public Car(String brand, String corp, double price) {
+		this.brand = brand;
+		this.corp = corp;
+		this.price = price;
+	}
+	public Car(String brand, String corp, int maxSpeed) {
+		this.brand = brand;
+		this.corp = corp;
+		this.maxSpeed = maxSpeed;
+	}
+}
+4、bean之间的相互引用
+<bean id="person" class="com.sk.spring.Person">
+	<property name="name" value="Tom"></property>
+	<property name="age" value="22"></property>
+	<!-- 建立bean之间的引用关系 
+	<property name="car" ref="car2"></property> 
+	<property name="car"> <ref bean="car2"/> </property> -->
+	<!-- 内部bean 不能被外部引用 -->
+	<property name="car">
+		<bean class="com.sk.spring.Car">
+			<constructor-arg value="Baoma" type="java.lang.String"></constructor-arg>
+			<constructor-arg type="java.lang.String">
+				<value><![CDATA[<Suzhou>]]></value>
+			</constructor-arg>
+			<constructor-arg type="int">
+				<value>250</value>
+			</constructor-arg>
+		</bean>
+	</property>
+</bean>
+5、级联属性赋值
+<bean id="person2" class="com.sk.spring.Person">
+	<constructor-arg value="jack" type="java.lang.String"></constructor-arg>
+	<constructor-arg>
+		<value>25</value>
+	</constructor-arg>
+	<!-- <constructor-arg ref="car"></constructor-arg> -->
+	<!-- 测试null <constructor-arg><null/></constructor-arg> -->
+	<constructor-arg ref="car"></constructor-arg>
+	<!-- 为级联属性赋值 ，属性需要先初始化后才可以为级联属性赋值，否则会有异常，和struts2不同 
+	<property name="car.maxSpeed" value="200"></property>-->
+</bean>
+6、集合属性
+<bean id="person3" class="com.sk.spring.collection.Person">
+	<property name="name" value="Mike"></property>
+	<property name="age" value="27"></property>
+	<property name="cars">
+		<!-- 使用list赋值 -->
+		<list>
+			<ref bean="car" />
+			<ref bean="car2" />
+			<bean class="com.sk.spring.Car">
+				<constructor-arg value="Baoma" type="java.lang.String"></constructor-arg>
+				<constructor-arg type="java.lang.String">
+					<value><![CDATA[<Suzhou>]]></value>
+				</constructor-arg>
+				<constructor-arg type="int">
+					<value>250</value>
+				</constructor-arg>
+			</bean>
+		</list>
+	</property>
+</bean>
+<bean id="newperson" class="com.sk.spring.collection.NewPerson">
+	<property name="name" value="Rose"></property>
+	<property name="age" value="22"></property>
+	<property name="cars">
+		<!-- 使用map赋值 -->
+		<map>
+			<entry key="aa" value-ref="car"></entry>
+			<entry key="bb" value-ref="car2"></entry>
+		</map>
+	</property>
+</bean>
+7、Properties属性
+<bean id="datasource" class="com.sk.spring.collection.DataSource">
+	<property name="properties">
+		<props>
+			<prop key="user">root</prop>
+			<prop key="password">root123</prop>
+			<prop key="jdbcUrl">jdbcUrl</prop>
+			<prop key="driverClass">driverClass</prop>
+		</props>
+	</property>
+</bean>
+8、特殊使用，如引入util命名空间
+xmlns:util="http://www.springframework.org/schema/util"
+xmlns:p="http://www.springframework.org/schema/p"
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd
+
+<!-- 配置独立的集合bean 引用util命名空间 -->
+<util:list id="cars">
+	<ref bean="car" />
+	<ref bean="car2" />
+</util:list>
+
+<bean id="person4" class="com.sk.spring.collection.Person">
+	<property name="name" value="Rose4"></property>
+	<property name="age" value="21"></property>
+	<property name="cars" ref="cars"></property>
+</bean>
+
+<!--通过P命名空间赋值 -->
+
+<bean id="person5" class="com.sk.spring.collection.Person" p:age="33"
+	p:name="tt" p:cars-ref="cars"></bean>
+9、自动装配方式：byType、byName、constructor
+byName:根据bean的名字和当前Bean的setter风格的属性名进行装配
+byType:根据beang的类型和当前的bean的属性的类型自动装配。若IOC容器中有1个以上的类型匹配的bean，则抛异常。
+10、bean的继承和依赖
+<!--抽象Bean不能被實例化，可用作模板 
+若一個bean的class屬性沒有指定，則該bean必須是一個抽象bean -->
+<bean id="address"  p:city="BeiJing" p:street="HuiLong" abstract="true"></bean>
+<!-- 配置繼承，子Bean可覆蓋父bean的屬性值 -->
+<bean id="address2" class="com.sk.spring.autowire.Address" p:city="ShangHai" parent="address"></bean>
+<!-- depends-on用于前置依赖 ，在该bean创建前初始化依赖bean，多个用逗号或空格分隔-->
+<bean id="person" class="com.sk.spring.autowire.Person" p:name="Jack"
+	p:address-ref="address2" depends-on="car"></bean>
+11、bean的作用域
+默认使用：scope="singleton"，容器初始化时创建bean实例，在整个容器的生命周期内只创建这一个bean，单例的
+prototype:原型的，容器初始化时不创建Bean的实例，而在每次请求时都创建一个新的bean实例返回。
+request
+session
+12、引用外部属性文件
+首先加入context命名空间
+<context:property-placeholder location="classpath:db.properties"/>
