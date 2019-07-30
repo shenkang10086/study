@@ -1,6 +1,8 @@
 package com.sk.spring;
 
-public class Car {
+import java.io.Serializable;
+
+public class Car implements Serializable {
 	private String brand;
 	private String corp;
 	private double price;
