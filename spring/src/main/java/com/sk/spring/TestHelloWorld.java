@@ -8,14 +8,14 @@ public class TestHelloWorld{
 		ApplicationContext ctx= new ClassPathXmlApplicationContext("ApplicationContext.xml");
 //		HelloWorld helloWorld= (HelloWorld)ctx.getBean("hello");
 //		HelloWorld helloWorld= ctx.getBean(HelloWorld.class);
-		//springÏÈµ÷ÓÃÎÞ²Î¹¹ÔìÆ÷³õÊ¼»¯£¬ÔÙµ÷ÓÃset·½·¨×¢ÈëÖµ
+		//springï¿½Èµï¿½ï¿½ï¿½ï¿½Þ²Î¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ï¿½ï¿½setï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½Öµ
 //		helloWorld.hello();
 		
-		Car car=(Car)ctx.getBean("car");
-		System.out.println(car);
+//		Car car=(Car)ctx.getBean("car");
+//		System.out.println(car);
 //		
-//		Car car2=(Car)ctx.getBean("car2");
-//		System.out.println(car2);
+		Car car2=(Car)ctx.getBean("car2");
+		System.out.println(car2);
 //		
 //		Person per=(Person)ctx.getBean("person");
 //		System.out.println(per);
